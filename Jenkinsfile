@@ -36,19 +36,46 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                //error 'this is failed'
             }
         }
-    }
-    
-    stage('params') {
+
+        stage('Example') {
+            environment {
+                AUTH = credentials('ssh-auth')
+            }
+            steps {
+                sh 'printenv'
+            }
+        }
+        stage('params') {
             steps {
                 echo "Hello ${params.PERSON}"
+
                 echo "Biography: ${params.BIOGRAPHY}"
+
                 echo "Toggle: ${params.TOGGLE}"
+
                 echo "Choice: ${params.CHOICE}"
+
                 echo "Password: ${params.PASSWORD}"
+            }    
+        }
+        stage('Example') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
             }
+            steps {
+                echo "Hello, ${PERSON}, nice to meet you."
+            }
+        }        
     }
+       
     post {
         always {
             echo 'I will always run whether job is sucess or not'

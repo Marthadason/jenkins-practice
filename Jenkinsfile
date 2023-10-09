@@ -39,11 +39,7 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            echo 'I will always run whether job is sucess or not'
-        }
-    }
+    
     stage('params') {
             steps {
                 echo "Hello ${params.PERSON}"
@@ -52,5 +48,11 @@ pipeline {
                 echo "Choice: ${params.CHOICE}"
                 echo "Password: ${params.PASSWORD}"
             }
-}
+    }
+    post {
+        always {
+            echo 'I will always run whether job is sucess or not'
+        }
+    }
+
 }

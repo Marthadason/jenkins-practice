@@ -44,7 +44,7 @@ pipeline {
             echo 'I will always run whether job is sucess or not'
         }
     }
-    stage('parms') {
+    stage('params') {
             steps {
                 echo "Hello ${params.PERSON}"
                 echo "Biography: ${params.BIOGRAPHY}"

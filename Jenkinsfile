@@ -3,9 +3,9 @@ pipeline {
     options {
         timeout(time: 1, unit: 'HOURS') 
     }
-    triggers {
-        cron('* * * * *')
-    }
+    // triggers {
+    //     cron('* * * * *')
+    // }
     environment { 
         USER = 'MarthaDawson'
     }
@@ -61,7 +61,7 @@ pipeline {
                 echo "Password: ${params.PASSWORD}"
             }    
         }
-        stage('Example') {
+        stage('Input') {
             input {
                 message "Should we continue?"
                 ok "Yes, we should."

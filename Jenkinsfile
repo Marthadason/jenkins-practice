@@ -3,6 +3,9 @@ pipeline {
     options {
         timeout(time: 1, unit: 'HOURS') 
     }
+    triggers {
+        cron('* * * * *')
+    }
     environment { 
         USER = 'MarthaDawson'
     }
@@ -41,4 +44,16 @@ pipeline {
             echo 'I will always run whether job is sucess or not'
         }
     }
+    stage('parms') {
+            steps {
+                echo "Hello ${params.PERSON}"
+
+                echo "Biography: ${params.BIOGRAPHY}"
+
+                echo "Toggle: ${params.TOGGLE}"
+
+                echo "Choice: ${params.CHOICE}"
+
+                echo "Password: ${params.PASSWORD}"
+            }
 }
